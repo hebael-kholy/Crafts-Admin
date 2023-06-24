@@ -18,7 +18,6 @@ export class OrdersComponent implements OnInit {
     'name',
     'date',
     'price',
-    'title',
     'state',
     'delete',
   ];

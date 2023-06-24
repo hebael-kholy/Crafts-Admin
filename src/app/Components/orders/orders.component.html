@@ -14,14 +14,6 @@
       <th mat-header-cell mat-sort-header *matHeaderCellDef> Total Price </th>
       <td mat-cell *matCellDef="let element"> {{element.totalPrice}} EGP</td>
     </ng-container>
-    <ng-container matColumnDef="title">
-      <th mat-header-cell *matHeaderCellDef> Cart Products </th>
-      <td mat-cell *matCellDef="let element">
-        <div *ngFor="let order of element.cartItems; let i=index">
-          {{i+1}}. {{order.title}}
-        </div>
-      </td>
-    </ng-container>
     <ng-container matColumnDef="state">
       <th mat-header-cell *matHeaderCellDef> Status </th>
       <td mat-cell *matCellDef="let element">
