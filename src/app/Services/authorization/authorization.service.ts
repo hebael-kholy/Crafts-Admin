@@ -17,7 +17,7 @@ export class AuthorizationService {
 
   updateInfo(id: any, data: any) {
     return this.myHttpClient.put(
-      'https://localhost:7118/api/users/update/' + id,
+      'https://craftsapp.azurewebsites.net/api/users/update/' + id,
       data,
       this.requestOptions
     );
@@ -25,7 +25,7 @@ export class AuthorizationService {
 
   updateImage(id: any, data: any) {
     return this.myHttpClient.put(
-      'https://localhost:7118/api/users/image/' + id,
+      'https://craftsapp.azurewebsites.net/api/users/image/' + id,
       data
     );
   }

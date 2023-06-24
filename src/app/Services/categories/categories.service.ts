@@ -8,30 +8,35 @@ export class CategoriesService {
   constructor(private myHttp: HttpClient) {}
 
   getAllCategories() {
-    return this.myHttp.get('https://localhost:7118/api/categories');
+    return this.myHttp.get(
+      'https://craftsapp.azurewebsites.net/api/categories'
+    );
   }
 
   addCategory(data: any) {
-    return this.myHttp.post('https://localhost:7118/api/categories', data);
+    return this.myHttp.post(
+      'https://craftsapp.azurewebsites.net/api/categories',
+      data
+    );
   }
 
   updateCategory(categoryId: any, data: any) {
     return this.myHttp.put(
-      'https://localhost:7118/api/categories/' + categoryId,
+      'https://craftsapp.azurewebsites.net/api/categories/' + categoryId,
       data
     );
   }
 
   updateImage(categoryId: any, data: any) {
     return this.myHttp.put(
-      'https://localhost:7118/api/categories/image/' + categoryId,
+      'https://craftsapp.azurewebsites.net/api/categories/image/' + categoryId,
       data
     );
   }
 
   deleteCategory(categoryId: any) {
     return this.myHttp.delete(
-      'https://localhost:7118/api/categories/' + categoryId
+      'https://craftsapp.azurewebsites.net/api/categories/' + categoryId
     );
   }
 }

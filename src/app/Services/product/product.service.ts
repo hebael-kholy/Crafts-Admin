@@ -11,26 +11,34 @@ export class ProductService {
   constructor(private http: HttpClient) {}
 
   getAllProducts() {
-    return this.http.get('https://localhost:7118/api/products');
+    return this.http.get('https://craftsapp.azurewebsites.net/api/products');
   }
   getTopProducts() {
     return this.http.get('https://ecommerceiti-heba.onrender.com/product/top');
   }
   getAllCategories() {
-    return this.http.get('https://localhost:7118/api/categories');
+    return this.http.get('https://craftsapp.azurewebsites.net/api/categories');
   }
   createProduct(item: any) {
-    return this.http.post('https://localhost:7118/api/products', item);
+    return this.http.post(
+      'https://craftsapp.azurewebsites.net/api/products',
+      item
+    );
   }
   deleteProduct(id: any) {
-    return this.http.delete(`https://localhost:7118/api/products/${id}`);
+    return this.http.delete(
+      `https://craftsapp.azurewebsites.net/api/products/${id}`
+    );
   }
   editProduct(id: any, item: any) {
-    return this.http.put(`https://localhost:7118/api/products/${id}`, item);
+    return this.http.put(
+      `https://craftsapp.azurewebsites.net/api/products/${id}`,
+      item
+    );
   }
   updateImage(id: any, data: any) {
     return this.http.put(
-      `https://localhost:7118/api/products/image/${id}`,
+      `https://craftsapp.azurewebsites.net/api/products/image/${id}`,
       data
     );
   }

@@ -13,7 +13,7 @@ export class AuthenticationService {
   onLogin(obj: any): Observable<any> {
     this.isAuthenticated = true;
     return this.myHttpClient.post(
-      'https://localhost:7118/api/admins/loginadmin',
+      'https://craftsapp.azurewebsites.net/api/admins/loginadmin',
       obj
     );
   }

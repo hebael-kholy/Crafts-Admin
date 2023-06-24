@@ -8,23 +8,23 @@ export class OrdersService {
   constructor(private myHttp: HttpClient) {}
 
   getAllOrders() {
-    return this.myHttp.get('https://localhost:7118/api/orders');
+    return this.myHttp.get('https://craftsapp.azurewebsites.net/api/orders');
   }
 
   getAllUsers() {
-    return this.myHttp.get('https://localhost:7118/api/users');
+    return this.myHttp.get('https://craftsapp.azurewebsites.net/api/users');
   }
 
   cancelOrder(orderId: any) {
     return this.myHttp.put(
-      'https://localhost:7118/api/orders/cancelorder/' + orderId,
+      'https://craftsapp.azurewebsites.net/api/orders/cancelorder/' + orderId,
       ''
     );
   }
 
   acceptOrder(orderId: any) {
     return this.myHttp.put(
-      'https://localhost:7118/api/orders/acceptorder/' + orderId,
+      'https://craftsapp.azurewebsites.net/api/orders/acceptorder/' + orderId,
       ''
     );
   }
