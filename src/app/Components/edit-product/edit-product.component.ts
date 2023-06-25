@@ -28,6 +28,10 @@ export class EditProductComponent implements OnInit {
   categoryId = this.data.categoryId;
   isSale = this.data.isSale;
   defaultCatId: any;
+  myFormControl = new FormControl(this.data.price, [Validators.min(1)]);
+  myFormControlQuantity = new FormControl(this.data.quantity, [
+    Validators.min(1),
+  ]);
 
   constructor(
     public dialogRef: MatDialogRef<EditProductComponent>,
@@ -37,6 +41,12 @@ export class EditProductComponent implements OnInit {
     private http: HttpClient,
     private router: ActivatedRoute
   ) {}
+
+  onKeyDown(event: KeyboardEvent) {
+    if (event.key === '-' || event.key === 'Subtract') {
+      event.preventDefault();
+    }
+  }
 
   onNoClick(): void {
     this.dialogRef.close();
@@ -81,9 +91,9 @@ export class EditProductComponent implements OnInit {
     this.form = this.build.group({
       productId: [this.data.productId],
       title: [this.data.title],
-      price: [this.data.price],
+      price: [this.data.price, Validators.min(1)],
       image: [null],
-      quantity: [this.data.quantity],
+      quantity: [this.data.quantity, Validators.min(1)],
       isSale: [this.data.isSale],
       description: [this.data.description],
       categoryId: [this.data.categoryId],

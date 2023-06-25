@@ -11,14 +11,21 @@
       </div>
       <div class="col-md-3 col-sm-12">
         <label for="inputCity">Price</label>
-        <input type="number" class="form-control w-100" id="inputCity" formControlName="price">
+        <input type="number" class="form-control w-100" id="inputCity" formControlName="price" min="1"
+          (keydown)="onKeyDown($event)">
         <p style="color: red;" *ngIf="form.controls['price'].dirty && form.hasError('required','price')">* This field is
           required</p>
+        <!-- <div style="color: red;" *ngIf="myFormControl.errors?.['min']">Value must be greater than or equal to 1
+        </div> -->
       </div>
       <div class="col-md-3 col-sm-12">
         <label for="inputCity">Quantity</label>
-        <input type="number" class="form-control w-100" id="inputCity" formControlName="quantity">
-        <!-- <p style="color: red;" *ngIf="form.controls['quantity'].dirty && form.hasError('required','quantity)">* This field is required</p> -->
+        <input type="number" class="form-control w-100" id="inputCity" formControlName="quantity" min="1"
+          (keydown)="onKeyDown($event)">
+        <!-- <div style="color: red;" *ngIf="myFormControlQuantity.errors?.['min']">Value must be greater than or equal to 1
+        </div> -->
+        <p style="color: red;" *ngIf="form.controls['quantity'].dirty && form.hasError('required','quantity')">* This
+          field is required </p>
       </div>
 
       <div class="col-md-3 col-sm-12">
@@ -47,7 +54,7 @@
       </div>
     </div>
     <div class="d-flex justify-content-end mt-3">
-      <button class="btn btn-success" [disabled]="form.invalid" (click)="addProduct()">Add</button>
+      <button type="submit" class="btn btn-success" [disabled]="form.invalid" (click)="addProduct()">Add</button>
     </div>
     <div class="text-center overlay" *ngIf="isLoading">
       <img src="assets/Spinner-1s-200px.svg" alt="">

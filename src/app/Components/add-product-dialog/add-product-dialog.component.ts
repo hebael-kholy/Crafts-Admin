@@ -1,6 +1,11 @@
 import { HttpClient, HttpEventType, HttpResponse } from '@angular/common/http';
 import { Component, OnInit, Inject } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 import {
   MatDialog,
   MAT_DIALOG_DATA,
@@ -33,8 +38,8 @@ export class AddProductDialogComponent implements OnInit {
   ngOnInit(): void {
     this.form = this.build.group({
       title: ['', Validators.required],
-      price: ['', Validators.required],
-      quantity: ['', Validators.required],
+      price: ['', Validators.required, Validators.min(1)],
+      quantity: ['', Validators.required, Validators.min(1)],
       description: ['', Validators.required],
       category: ['', Validators.required],
       image: ['', Validators.required],
@@ -50,6 +55,17 @@ export class AddProductDialogComponent implements OnInit {
   form!: FormGroup;
   categories: [] | any = [];
   selectedFile!: File;
+  myFormControl = new FormControl('', [Validators.required, Validators.min(1)]);
+  myFormControlQuantity = new FormControl('', [
+    Validators.required,
+    Validators.min(1),
+  ]);
+
+  onKeyDown(event: KeyboardEvent) {
+    if (event.key === '-' || event.key === 'Subtract') {
+      event.preventDefault();
+    }
+  }
 
   getCatergory() {
     this.Service.getAllCategories().subscribe((res: any) => {
@@ -105,11 +121,20 @@ export class AddProductDialogComponent implements OnInit {
         console.log(this.form.get('category')!.value);
         console.log(err);
         this.isLoading = false;
-        Swal.fire({
-          icon: 'warning',
-          title: 'Something Went Wrong!!!',
-          showConfirmButton: true,
-        });
+        let validationErr = `One or more validation errors occurred.`;
+        if (err.error.title == validationErr) {
+          Swal.fire({
+            icon: 'warning',
+            title: 'Please Enter Valid Data!!!',
+            showConfirmButton: true,
+          });
+        } else {
+          Swal.fire({
+            icon: 'warning',
+            title: 'Something Went Wrong!!!',
+            showConfirmButton: true,
+          });
+        }
       },
     });
   }

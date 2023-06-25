@@ -18,10 +18,17 @@
     </div>
     <div class="mb-3">
       <label for="exampleInputDiscount" class="form-label">Discount</label>
-      <input type="number" formControlName="discount" class="form-control" id="exampleInputDiscount"
-        aria-describedby="discountHelp" placeholder="Enter Discount %">
+      <input type="number" formControlName="discount" class="form-control" formControlName="discount"
+        placeholder="Enter Discount %" min="1" max="100" (input)="validateDiscountValue()"
+        (keydown)="onKeyDown($event)">
       <small *ngIf="formValue.get('discount')?.invalid" class="text-danger">Discount Percentage is
         required</small>
+      <!-- <p style="color: red;" *ngIf="formValue.controls['discount'].dirty && formValue.hasError('required','discount')">*
+        This field is
+        required</p> -->
+      <!-- <div style="color: red;" *ngIf="myFormControl.errors?.['min'] && myFormControl.errors?.['max']">Value must be
+        between 1 and 100
+      </div> -->
     </div>
   </form>
   <div class="text-center mt-4" *ngIf="isLoading">

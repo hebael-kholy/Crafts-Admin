@@ -26,6 +26,18 @@ export class EditCouponDialogComponent {
     this.dialogRef.close();
   }
 
+  onKeyDown(event: KeyboardEvent) {
+    if (event.key === '-' || event.key === 'Subtract') {
+      event.preventDefault();
+    }
+  }
+
+  validateDiscountValue() {
+    if (this.formValue.get('discount')?.value > 100) {
+      this.formValue.get('discount')?.setValue(100);
+    }
+  }
+
   ngOnInit(): void {
     console.log(this.data.image);
     this.formValue = this.formBuilder.group({

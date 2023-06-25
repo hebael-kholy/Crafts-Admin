@@ -1,5 +1,10 @@
 import { Component, Inject } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import {
+  FormGroup,
+  FormBuilder,
+  Validators,
+  FormControl,
+} from '@angular/forms';
 import { CouponsService } from './../../Services/coupons/coupons.service';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import Swal from 'sweetalert2';
@@ -12,6 +17,7 @@ import Swal from 'sweetalert2';
 export class AddCouponDialogComponent {
   formValue!: FormGroup;
   isLoading = false;
+  myFormControl = new FormControl('', [Validators.min(1), Validators.max(100)]);
 
   constructor(
     private formBuilder: FormBuilder,
@@ -30,6 +36,18 @@ export class AddCouponDialogComponent {
       expire: ['', Validators.required],
       discount: ['', Validators.required],
     });
+  }
+
+  onKeyDown(event: KeyboardEvent) {
+    if (event.key === '-' || event.key === 'Subtract') {
+      event.preventDefault();
+    }
+  }
+
+  validateDiscountValue() {
+    if (this.formValue.get('discount')?.value > 100) {
+      this.formValue.get('discount')?.setValue(100);
+    }
   }
 
   AddNewCoupon() {

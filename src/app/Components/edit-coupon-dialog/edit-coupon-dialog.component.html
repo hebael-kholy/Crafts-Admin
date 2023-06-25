@@ -18,7 +18,8 @@
     <div class="mb-3">
       <label for="exampleInputDiscount" class="form-label">Discount</label>
       <input type="number" formControlName="discount" class="form-control" id="exampleInputDiscount"
-        aria-describedby="discountHelp" placeholder="Enter Discount %">
+        aria-describedby="discountHelp" placeholder="Enter Discount %" (input)="validateDiscountValue()"
+        (keydown)="onKeyDown($event)">
       <small *ngIf="formValue.get('discount')?.invalid" class="text-danger">Discount Percentage is
         required</small>
     </div>

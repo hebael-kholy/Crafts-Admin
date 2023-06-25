@@ -36,8 +36,13 @@ export class LoginComponent implements OnInit {
   onSubmit(email: any, password: any) {
     const loginObj = { email, password };
     this.isLoading = true;
+
     this.authService.onLogin(loginObj).subscribe(
       (res: any) => {
+        if (res.user.role == 0) {
+          this.router.navigate(['home/login']);
+          Swal.fire('You must be admin to login', '', 'warning');
+        }
         console.log(res);
         localStorage.setItem('token', res.token);
         localStorage.setItem('name', res.user.userName);

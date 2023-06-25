@@ -9,11 +9,17 @@
       </div>
       <div class="col-md-3 col-sm-12">
         <label for="inputCity">Price</label>
-        <input type="number" class="form-control w-100" id="inputCity" formControlName="price">
+        <input type="number" class="form-control w-100" id="inputCity" formControlName="price"
+          (keydown)="onKeyDown($event)" min="1">
+        <!-- <div style="color: red;" *ngIf="myFormControl.errors?.['min']">Value must be greater than or equal to 1
+        </div> -->
       </div>
       <div class="col-md-3 col-sm-12">
         <label for="inputCity">quantity</label>
-        <input type="number" class="form-control w-100" id="inputCity" formControlName="quantity">
+        <input type="number" class="form-control w-100" id="inputCity" (keydown)="onKeyDown($event)"
+          formControlName="quantity" min="1">
+        <!-- <div style="color: red;" *ngIf="myFormControlQuantity.errors?.['min']">Value must be greater than or equal to 1
+        </div> -->
       </div>
       <div class="col-md-3 col-sm-12">
         <label for="">Categories</label>
