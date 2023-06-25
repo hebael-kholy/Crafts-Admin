@@ -42,7 +42,7 @@ export class EditCouponDialogComponent {
     console.log(this.data.image);
     this.formValue = this.formBuilder.group({
       name: [this.data.name, Validators.required],
-      expire: [this.data.expireDate.substring(0, 10), Validators.required],
+      expire: [this.data.expireDate, Validators.required],
       discount: [this.data.discount, Validators.required],
     });
   }

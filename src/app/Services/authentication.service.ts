@@ -14,6 +14,7 @@ export class AuthenticationService {
     this.isAuthenticated = true;
     return this.myHttpClient.post(
       'https://craftsapp.azurewebsites.net/api/admins/loginadmin',
+      // 'https://localhost:7118/api/admins/loginadmin',
       obj
     );
   }
