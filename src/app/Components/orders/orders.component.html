@@ -10,10 +10,6 @@
         {{element.createdAt.split("T")[1].split(".")[0]}}
       </td>
     </ng-container>
-    <ng-container matColumnDef="price">
-      <th mat-header-cell mat-sort-header *matHeaderCellDef> Total Price </th>
-      <td mat-cell *matCellDef="let element"> {{element.totalPrice}} EGP</td>
-    </ng-container>
     <ng-container matColumnDef="state">
       <th mat-header-cell *matHeaderCellDef> Status </th>
       <td mat-cell *matCellDef="let element">
